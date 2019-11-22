@@ -1,0 +1,36 @@
+.snippet-card {
+	padding: 0 !important;
+	position: relative;
+	min-height: 200px;
+	min-width: 300px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+
+	background: linear-gradient(
+			135deg,
+			rgba(0,0,0, 0.8) 0%,
+				rgba(0,0,0, 0.3) 50%), 
+			url('./code.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+
+.snippet-card button {
+	z-index: 1;
+}
+
+
+	
+
+.snippet-card .footnote {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	background: #544388;
+	color: #fff;
+	padding: 0.5rem;
+}
