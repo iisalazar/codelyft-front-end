@@ -424,11 +424,4 @@ button {
     text-align: center;
     justify-content: center;
   }
-
-  .widget {
-    left: 0;
-    right: 0;
-    margin-left: 35%;
-    margin-right: 35%;
-  }
 }

@@ -13,7 +13,7 @@ const Navbar = () => {
 	const { setAlert } = alertContext;
 	const onLogout = () => {
 		logout();
-		setAlert('Thank you for using Codelift.', 'success')
+		setAlert('Thank you for using Codelyft.', 'success')
 		snippetContext.clearSnippets();
 	}
 	const authLinks = (
@@ -43,7 +43,7 @@ const Navbar = () => {
 	return(
 		<div className="navbar bg-primary">
 			<h1>
-				Codelift
+				Codelyft
 			</h1>
 			<ul>
 				{

@@ -71,7 +71,7 @@ const RegisterForm = (props) => {
 	return(
 		<form className="form-container card" onSubmit = { onSubmit }>
 			<h1>
-				Register to <span className="text-secondary">Codelift</span>
+				Register to <span className="text-secondary">Codelyft</span>
 			</h1>
 			<div className="form-group">
 				<label htmlFor="username">Username</label>
