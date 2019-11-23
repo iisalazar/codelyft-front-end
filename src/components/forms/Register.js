@@ -28,7 +28,7 @@ const RegisterForm = (props) => {
 		last_name: '',
 		password: '',
 		password2: '',
-		profile: '',
+		profile: null,
 	})
 	
 	const { username, 
@@ -38,6 +38,11 @@ const RegisterForm = (props) => {
 			password, 
 			password2, profile } = user;
 
+	const validateEmail = (email) => {
+	    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	    return re.test(String(email).toLowerCase());
+	}
+
 	const handleProfile = (e) => {
 	    e.preventDefault();
 	    setUser({ ...user, profile: e.target.files[0]})
@@ -46,7 +51,13 @@ const RegisterForm = (props) => {
 	const onChange = e => setUser({ ...user, [e.target.name] : e.target.value });
 	const onSubmit = e => {
 		e.preventDefault();
-		if(
+		const allowed = [ "jpeg", "jpg", "png" ]
+		const name = profile.name;
+		const extension = name.split('.').pop().toLowerCase()
+		if(! allowed.includes(extension) ){
+			setAlert('Please only upload in jpg, png or jpeg format', 'danger');
+		}
+		else if(
 			username === '' || 
 			email === '' || 
 			first_name === '' ||
@@ -54,9 +65,16 @@ const RegisterForm = (props) => {
 			) {
 			setAlert('All fields are required', 'danger');
 		}
+		else if( !validateEmail(email) ) {
+			setAlert('Please enter a valid email', 'danger');
+		}
 		else if(password !== password2){
 			setAlert('Passwords do not match', 'danger');
-		} else{
+		} 
+		else if (profile === null){
+			setAlert('Profile field is required', 'danger');
+		}
+		else{
 			let formData = new FormData();
 			formData.append('profile', profile, profile.name);
 			formData.append('username', username);
