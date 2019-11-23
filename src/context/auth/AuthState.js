@@ -27,7 +27,7 @@ const AuthState = (props) => {
 
 	const loadUser = async () => {
 		try {
-			const res = await axios.get('/users/check/');
+			const res = await axios.get('/api/users/check/');
 			console.log(res.data);
 			dispatch({
 				type: USER_LOADED,
@@ -48,7 +48,7 @@ const AuthState = (props) => {
 			}
 		}
 		try {
-			const res = await axios.post('/users/register/', formData, config);
+			const res = await axios.post('/api/users/register/', formData, config);
 			console.log(res.data);
 			dispatch({
 				type: REGISTER_SUCCESS,
@@ -72,7 +72,7 @@ const AuthState = (props) => {
 			}
 		}
 		try {
-			const res = await axios.post('/users/login/', formData, config);
+			const res = await axios.post('/api/users/login/', formData, config);
 			// console.log(res.data);
 			dispatch({
 				type: LOGIN_SUCCESS,

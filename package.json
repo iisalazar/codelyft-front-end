@@ -9,7 +9,9 @@
     "axios": "^0.19.0",
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
+    "express-http-proxy": "^1.6.0",
     "http-proxy-middleware": "^0.20.0",
+    "nodemon": "^2.0.1",
     "path": "^0.12.7",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
@@ -21,6 +23,7 @@
   },
   "scripts": {
     "dev": "react-scripts start",
+    "dev-server": "nodemon server.js",
     "start": "node server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -42,7 +45,7 @@
       "last 1 safari version"
     ]
   },
-  "repository" : {
+  "repository": {
     "type": "git",
     "url": "https://github.com/dertrockx/codelyft-front-end.git"
   },

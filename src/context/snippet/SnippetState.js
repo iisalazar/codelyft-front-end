@@ -34,7 +34,7 @@ const SnippetState = props => {
 		}
 		console.log(formData);
 		try {
-			const res = await axios.post('/snippets/', formData, config);
+			const res = await axios.post('/api/snippets/', formData, config);
 			dispatch({
 				type: ADD_SNIPPET,
 				payload: res.data
@@ -63,7 +63,7 @@ const SnippetState = props => {
 
 	const getSnippets = async () => {
 		try {
-			const res = await axios.get('/snippets/mine/');
+			const res = await axios.get('/api/snippets/mine/');
 			dispatch({
 				type: GET_SNIPPETS,
 				payload: res.data
