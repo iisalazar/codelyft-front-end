@@ -49,5 +49,5 @@
     "type": "git",
     "url": "https://github.com/dertrockx/codelyft-front-end.git"
   },
-  "proxy": "http://codelift-backend.herokuapp.com/api"
+  "proxy": "http://codelift-backend.herokuapp.com"
 }

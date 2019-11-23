@@ -2,7 +2,8 @@ const express = require('express');
 const path = require('path');
 const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
-var proxy = require('express-http-proxy');
+var proxy = require('http-proxy-middleware');
+
 
 const isDev = process.env.NODE_ENV !== 'production';
 const PORT = process.env.PORT || 5000;
@@ -22,12 +23,16 @@ if (!isDev && cluster.isMaster) {
 
 } else {
   const app = express();
-  
+  app.use('/api', 
+      proxy({
+        target: 'http://codelift-backend.herokuapp.com',
+        changeOrigin: true
+      }) 
+      );
   // Priority serve any static files.
   app.use(express.static(path.resolve(__dirname, './build')));
 
   // Answer API requests.
-  app.use('/api', proxy('http://codelift-backend.herokuapp.com/api'));
   /*
   app.get('/api', function (req, res) {
     res.set('Content-Type', 'application/json');
