@@ -27,7 +27,7 @@ if (!isDev && cluster.isMaster) {
   app.use(express.static(path.resolve(__dirname, './build')));
 
   // Answer API requests.
-  app.use('/api', proxy('http://codelift-backend.herokuapp.com'));
+  app.use('/api', proxy('http://codelift-backend.herokuapp.com/api'));
   /*
   app.get('/api', function (req, res) {
     res.set('Content-Type', 'application/json');

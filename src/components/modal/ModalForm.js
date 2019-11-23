@@ -65,6 +65,10 @@ const ModalForm = () => {
 		formData.append('source', file, file.name);
 		formData.append('language', language)
 		addSnippet(formData);
+		setSnippet({
+			language: 'Python',
+			file: null
+		})
 	}
 	return(
 		showForm 
