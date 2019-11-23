@@ -49,7 +49,7 @@ const SnippetState = props => {
 	const deleteSnippet = async id => {
 		
 		try {
-			await axios.delete(`/snippets/${id}`);
+			await axios.delete(`/api/snippets/${id}`);
 			dispatch({
 				type: DELETE_SNIPPET,
 				payload: id
@@ -75,8 +75,8 @@ const SnippetState = props => {
 
 	const setCurrent = async id => {
 		try {
-			let res = await axios.get(`/snippets/${id}`);
-			const res2 = await axios.get(`/users/${res.data.user}/`);
+			let res = await axios.get(`/api/snippets/${id}`);
+			const res2 = await axios.get(`/api/users/${res.data.user}/`);
 			res.data = { ...res.data, user: {
 				username: res2.data.username,
 				id: res2.data.id,
