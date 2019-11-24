@@ -25,6 +25,7 @@ const ModalForm = () => {
 		if(created){
 			setAlert('Snippet uploaded successfully','success');
 			loadUser();
+			setUploading(false)
 			hideModalForm();
 		}
 		// eslint-disable-next-line
@@ -34,6 +35,8 @@ const ModalForm = () => {
 		language: 'Python',
 		file: null
 	})
+
+	const [uploading, setUploading] = useState(false)
 
 	const { language, file } = snippet;
 
@@ -61,6 +64,7 @@ const ModalForm = () => {
 
 
 	const upload = (e) => {
+		setUploading(true)
 		let formData = new FormData();
 		formData.append('source', file, file.name);
 		formData.append('language', language)
@@ -112,7 +116,7 @@ const ModalForm = () => {
 					>
 						<FontAwesomeIcon icon="upload" /> Upload
 					</button>
-					) : <div className="card">No file uploaded yet</div>
+					) : <div className="card">{ uploading ? 'Uploading...' : 'No file uploaded yet' }</div>
 				}
 				</div>
 			</div>

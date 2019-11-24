@@ -12,9 +12,12 @@ const RegisterForm = (props) => {
 	useEffect( () => {
 		if(isAuthenticated && token){
 			console.log(token);
+			setLoading(false);
 			props.history.push('/');
+			setAlert('Register Successful!', 'success');
 		}
 		if(error){
+			setLoading(false);
 			setAlert(error, 'danger');
 			clearErrors()
 		}
@@ -31,6 +34,8 @@ const RegisterForm = (props) => {
 		profile: null,
 	})
 	
+	const [loading, setLoading] = useState(false);
+
 	const { username, 
 			email, 
 			first_name, 
@@ -75,6 +80,7 @@ const RegisterForm = (props) => {
 			setAlert('Passwords do not match', 'danger');
 		} 
 		else{
+			setLoading(true);
 			let formData = new FormData();
 			formData.append('profile', profile, profile.name);
 			formData.append('username', username);
@@ -158,12 +164,23 @@ const RegisterForm = (props) => {
 					onChange= { handleProfile }
 					/>
 			</div>
-			<input 
-				type="submit" 
-				value="Register" 
-				className="btn btn-secondary btn-block"
-				style={{ fontSize: '1.5rem' }}
-			/>
+			{
+				loading ? (
+					<button 
+						className="btn btn-block"
+						style={{ fontSize: '1.5rem' }}
+					>
+						Registering...
+					</button>
+				) : (
+					<input 
+						type="submit" 
+						value="Register" 
+						className="btn btn-secondary btn-block"
+						style={{ fontSize: '1.5rem' }}
+					/>
+				)
+			}
 			<button 
 				className="btn btn-primary btn-block"
 				style={{ fontSize: '1.5rem' }}

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import SnippetContext from "../../context/snippet/snippetContext";
 import ModalContext from "../../context/modal/modalContext";
 import "./SnippetCard.css";
+import extractor from "../../utils/extractFileName";
 const SnippetCard = ({ id, fileName }) => {
 	const snippetContext = useContext(SnippetContext);
 	const modalContext = useContext(ModalContext);
@@ -18,7 +19,7 @@ const SnippetCard = ({ id, fileName }) => {
 				View Code
 			</button>
 			<div className="footnote text-left">
-				{ fileName }
+				{ extractor(fileName) }
 			</div>
 		</div>
 	)

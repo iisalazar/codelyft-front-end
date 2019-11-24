@@ -1,7 +1,7 @@
 import React, {  useContext } from "react";
 import SnippetCard from "./SnippetCard";
 import SnippetContext from "../../context/snippet/snippetContext";
-import extractor from "../../utils/extractFileName";
+
 
 const Snippets = () => {
 	const snippetContext = useContext(SnippetContext);
@@ -17,7 +17,7 @@ const Snippets = () => {
 					<SnippetCard 
 						key={ snippet.id } 
 						id={ snippet.id } 
-						fileName={ extractor(snippet.source) }
+						fileName={ snippet.filename }
 					/>)
 				) : <h2 className="text-center card">No snippets yet. Please add</h2>
 		}

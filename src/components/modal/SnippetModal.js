@@ -68,7 +68,7 @@ const SnippetModal = (props) => {
 						profile= { current.user.profile.image }
 					/>
 					<div className="card text-left">
-						<b>{ extractor(current.source) }</b><br/>
+						<b>{ extractor(current.filename) }</b><br/>
 						Written in: <b>{ current.language }</b><br />
 						Date: <b>{ convertDate(current.created)  }</b>
 					</div>

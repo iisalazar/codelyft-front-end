@@ -14,10 +14,12 @@ const LoginForm = (props) => {
 
 	useEffect( () => {
 		if(isAuthenticated){
+			setLoading(false);
 			props.history.push('/');
 			setAlert('Login Successful!', 'success');
 		}
 		if (error){
+			setLoading(false);
 			setAlert(error, 'danger');
 			clearErrors()
 		}
@@ -28,6 +30,7 @@ const LoginForm = (props) => {
 		username: '',
 		password: '',
 	})
+	const [loading, setLoading] = useState(false);
 
 	const { username, password } = user;
 
@@ -38,6 +41,7 @@ const LoginForm = (props) => {
 		if(username === '' || password === ''){
 			setAlert('Username and passwords should not be blank', 'danger');
 		} else {
+			setLoading(true);
 			login({
 				username,
 				password
@@ -68,12 +72,20 @@ const LoginForm = (props) => {
 					onChange={ onChange }
 					/>
 			</div>
-			<input 
-				type="submit" 
-				value="Login" 
-				className="btn btn-secondary btn-block"
-				style={{ fontSize: '1.5rem' }}
-			/>
+			{ loading ? (
+				<button className="btn btn-block" 
+					style={{ fontSize: '1.5rem' }}>
+					Logging in...
+				</button>
+				) : (
+				<input 
+					type="submit" 
+					value="Login" 
+					className="btn btn-secondary btn-block"
+					style={{ fontSize: '1.5rem' }}
+				/>
+				)
+			}
 			<button 
 				className="btn btn-primary btn-block"
 				style={{ fontSize: '1.5rem' }}
