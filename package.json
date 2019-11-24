@@ -50,5 +50,5 @@
     "url": "https://github.com/dertrockx/codelyft-front-end.git"
   },
   
-  "proxy": "http://localhost:8000"
+  "proxy": "http://codelift-backend.herokuapp.com"
 }

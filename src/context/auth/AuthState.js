@@ -59,6 +59,13 @@ const AuthState = (props) => {
 			loadUser();
 		} catch(err){
 			console.error(err.response.data);
+			console.log(err.response.data.username !== undefined);
+			if(err.response.data.username !== undefined){
+				err.response.data = {
+					...err.response.data,
+					details: "A user with that username already exists."
+				}
+			}
 			dispatch({
 				type: REGISTER_FAIL,
 				payload: err.response.data.details

@@ -52,18 +52,21 @@ const RegisterForm = (props) => {
 	const onSubmit = e => {
 		e.preventDefault();
 		const allowed = [ "jpeg", "jpg", "png" ]
-		const name = profile.name;
-		const extension = name.split('.').pop().toLowerCase()
-		if(! allowed.includes(extension) ){
-			setAlert('Please only upload in jpg, png or jpeg format', 'danger');
-		}
-		else if(
+		const name = profile !== null ? profile.name : "";
+		const extension = name.split('.').pop().toLowerCase();
+		if(
 			username === '' || 
 			email === '' || 
 			first_name === '' ||
-			last_name === '' 
+			last_name === ''
 			) {
 			setAlert('All fields are required', 'danger');
+		}
+		else if (profile === null){
+			setAlert('Profile field is required', 'danger');
+		}
+		else if(!allowed.includes(extension) ){
+			setAlert('Please upload only a valid picture in jpg, png or jpeg format', 'danger');
 		}
 		else if( !validateEmail(email) ) {
 			setAlert('Please enter a valid email', 'danger');
@@ -71,9 +74,6 @@ const RegisterForm = (props) => {
 		else if(password !== password2){
 			setAlert('Passwords do not match', 'danger');
 		} 
-		else if (profile === null){
-			setAlert('Profile field is required', 'danger');
-		}
 		else{
 			let formData = new FormData();
 			formData.append('profile', profile, profile.name);
