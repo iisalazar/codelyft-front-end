@@ -24,6 +24,7 @@ const ProfileCard = ({ style, imageSize, className }) => {
 					<li><h2 className="">{ user.username }</h2></li>
 					<li><small>{ user.snippet_count } snippets</small></li>
 					<li><p>{ user.first_name + ' ' + user.last_name}</p></li>
+					<li><p>{ user.email }</p></li>
 				</ul>
 			</div>
 		)
