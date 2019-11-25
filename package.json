@@ -1,12 +1,20 @@
 {
   "name": "Codelyft",
-  "version": "0.1.0",
+  "description": "A platform where devs can showcase their code snippets",
+  "author": "Ian Salazar",
+  "version": "1.0.0",
   "private": true,
+  "devDependencies": {
+      "electron": "^7.1.2",
+      "electron-builder": "^21.2.0"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-fontawesome": "^0.1.7",
     "axios": "^0.19.0",
+    "concurrently": "^5.0.0",
+    "electron-is-dev": "^1.1.0",
     "express": "^4.17.1",
     "express-favicon": "^2.0.1",
     "express-http-proxy": "^1.6.0",
@@ -19,7 +27,18 @@
     "react-highlight.js": "^1.0.7",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "uuid": "^3.3.3"
+    "uuid": "^3.3.3",
+    "wait-on": "^3.3.0"
+  },
+  "build": {
+    "appId": "com.iansalazar.codelyft",
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   },
   "scripts": {
     "dev": "react-scripts start",
@@ -28,7 +47,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "electron-dev": "concurrently \"BROWSER=none npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron-pack": "electron-builder -c.extraMetadatamain=build/electron.js",
+    "preelectron-pack": "npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,6 +71,7 @@
     "type": "git",
     "url": "https://github.com/dertrockx/codelyft-front-end.git"
   },
-  
+  "main": "public/electron.js",
+  "homepage": "./",
   "proxy": "http://codelift-backend.herokuapp.com"
 }
