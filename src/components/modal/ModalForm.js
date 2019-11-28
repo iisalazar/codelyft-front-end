@@ -32,27 +32,34 @@ const ModalForm = () => {
 	}, [created] )
 
 	const [snippet, setSnippet] = useState({
-		language: 'Python',
 		file: null
 	})
 
 	const [uploading, setUploading] = useState(false)
 
-	const { language, file } = snippet;
+	const { file } = snippet;
 
-	const onChange = (e) => {
-		setSnippet({
-			...snippet,
-			language: e.target.value
-		})
-	};
 	const onUpload = e => {
-		const allowed = [ "py", "cpp", "js", "cs", "c", "java", "sql" ]
+		const allowed = [ 
+			"py", 
+			"cpp", 
+			"js", 
+			"cs", 
+			"c", 
+			"java", 
+			"sql", 
+			'css', 
+			'html',
+			"ts",
+			"php",
+			"rb" ,
+			"lua"
+		]
 		const file = e.target.files[0];
 		const { name } = file;
 		const extension = name.split('.').pop()
 		if(! allowed.includes(extension) ){
-			setAlert('You can upload only files in the choice field', 'danger');
+			setAlert('File should end in py, js, cs, c, cpp, java, sql, css, html, ts, php, rb, or lua', 'danger');
 			hideModalForm();
 		} else {
 			setSnippet({
@@ -67,10 +74,8 @@ const ModalForm = () => {
 		setUploading(true)
 		let formData = new FormData();
 		formData.append('source', file, file.name);
-		formData.append('language', language)
 		addSnippet(formData);
 		setSnippet({
-			language: 'Python',
 			file: null
 		})
 	}
@@ -91,15 +96,6 @@ const ModalForm = () => {
 					name="snippet" 
 					onChange={ onUpload }
 				/>
-				<select value={language} onChange={ onChange } style={{ background: 'white' }}>
-					<option value="Python">Python</option>
-			        <option value="Javascript">Javascript</option>
-			        <option value="C#">C#</option>
-			        <option value="C">C</option>
-			        <option value="C++">C++</option>
-			        <option value="Java">Java</option>
-			        <option value="SQL">SQL</option>
-				</select>
 			</div>
 			<div style={{ textAlign: 'center' }}>
 				<button 

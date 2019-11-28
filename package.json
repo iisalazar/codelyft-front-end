@@ -5,8 +5,8 @@
   "version": "1.0.0",
   "private": true,
   "devDependencies": {
-      "electron": "^7.1.2",
-      "electron-builder": "^21.2.0"
+    "electron": "^7.1.2",
+    "electron-builder": "^21.2.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
@@ -73,5 +73,5 @@
   },
   "main": "public/electron.js",
   "homepage": "./",
-  "proxy": "http://codelift-backend.herokuapp.com"
+  "proxy": "http://localhost:8000"
 }
