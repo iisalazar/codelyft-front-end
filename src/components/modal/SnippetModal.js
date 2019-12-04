@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import Highlight from "react-highlight.js";
 import Modal from "./Modal";
 import SmallCard from "../profile/ProfileCardSmall";
 import ModalContext from "../../context/modal/modalContext";
@@ -7,14 +6,8 @@ import SnippetContext from "../../context/snippet/snippetContext";
 import AlertContext from "../../context/alert/alertContext";
 import AuthContext from "../../context/auth/authContext";
 import extractor from "../../utils/extractFileName";
-
-const modalStyle = { 
-	overflowY: 'scroll', 
-	height: 'auto', 
-	maxHeight: '68vh',
-	width: 'auto',
-	fontSize: '14px'
-}
+import { convertDate, language } from "../../utils"
+import CodeSnippet from "../snippets/CodeSnippet";
 
 const SnippetModal = (props) => {
 	const modalContext = useContext(ModalContext);
@@ -40,22 +33,19 @@ const SnippetModal = (props) => {
 		hideModal()
 		clearCurrent()
 	}
-	const convertDate = date => {
-		let newDate = new Date(date);
-		return newDate.toLocaleString()
-	}
-	const language = lang => lang.toLowerCase()
 	const delSnippet = () => {
 		if(current && showSnippet){
 			deleteSnippet(current.id);
 		}
 	}
+	
 	return(
 		showSnippet && current && (
 			<Modal>
-				<Highlight language={ language(current.language) } style={modalStyle}>
-						{ current.source_code }
-				</Highlight>
+				<CodeSnippet 
+					language={ language(current.language) }
+					source_code={ current.source_code }
+				/>
 				<div>
 					<button 
 						className='btn btn-dark btn-block' 

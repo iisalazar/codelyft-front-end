@@ -11,7 +11,10 @@ import {
 	CLEAR_SNIPPETS,
 	// SNIPPET_ERROR,
 	CLEAR_CREATED,
-	CLEAR_DELETED
+	CLEAR_DELETED,
+	UPVOTE,
+	DOWNVOTE,
+	GET_FEED
 } from "../types";
 
 const SnippetState = props => {
@@ -21,7 +24,8 @@ const SnippetState = props => {
 		error: null,
 		loading: true,
 		created: false,
-		deleted: false
+		deleted: false,
+		feed: []
 	};
 
 	const [state, dispatch] = useReducer(snippetReducer, initialState);
@@ -61,7 +65,7 @@ const SnippetState = props => {
 		}
 	}
 
-	const getSnippets = async () => {
+	const getMySnippets = async () => {
 		try {
 			const res = await axios.get('/api/snippets/mine/');
 			dispatch({
@@ -73,10 +77,23 @@ const SnippetState = props => {
 		}
 	}
 
+	const getSnippets = async () => {
+		try {
+			const res = await axios.get('/api/snippets/');
+			console.log(res.data);
+			dispatch({
+				type: GET_FEED,
+				payload: res.data
+			});
+		}catch(err){
+			console.error(err.response);
+		}
+	}
+
 	const setCurrent = async id => {
 		try {
 			let res = await axios.get(`/api/snippets/${id}`);
-			const res2 = await axios.get(`/api/users/${res.data.user}/`);
+			const res2 = await axios.get(`/api/users/${res.data.user.id}/`);
 			res.data = { ...res.data, user: {
 				username: res2.data.username,
 				id: res2.data.id,
@@ -98,6 +115,28 @@ const SnippetState = props => {
 	const clearSnippets = () => {
 		dispatch({ type: CLEAR_SNIPPETS })
 	}
+
+	const upvote = ({ id, user}) => {
+		try {
+			dispatch({
+				type: UPVOTE,
+				payload: { id, user}
+			})
+		}catch(err){
+			console.log(err.response.data);
+		}
+	}
+	const downvote = ({ id, user }) => {
+		try {
+			dispatch({
+				type: DOWNVOTE,
+				payload: { id, user}
+			})
+		}catch(err){
+			console.log(err.response.data);
+		}
+	}
+
 	return (
 		<SnippetContext.Provider
 			value={{
@@ -107,12 +146,16 @@ const SnippetState = props => {
 				loading: state.loading,
 				created: state.created,
 				deleted: state.deleted,
-				getSnippets,
+				feed: state.feed,
+				getMySnippets,
 				clearSnippets,
 				setCurrent,
 				clearCurrent,
 				addSnippet,
-				deleteSnippet
+				deleteSnippet,
+				upvote,
+				downvote,
+				getSnippets
 			}}
 		>
 			{ props.children }

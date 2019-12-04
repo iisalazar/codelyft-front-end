@@ -1,5 +1,5 @@
 import React, {  useContext } from "react";
-import SnippetCard from "./SnippetCard";
+import SnippetCard from "./SnippetCardSmall";
 import SnippetContext from "../../context/snippet/snippetContext";
 
 

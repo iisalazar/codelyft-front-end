@@ -25,6 +25,11 @@ export const HIDE_MODAL 	= 'HIDE_MODAL';
 export const SHOW_MODAL_FORM 	= 'SHOW_MODAL_FORM';
 export const HIDE_MODAL_FORM 	= 'HIDE_MODAL_FORM';
 
+
+export const GET_FEED 		= 'GET_FEED'
+export const UPVOTE			= "UPVOTE"
+export const DOWNVOTE		= 'DOWNVOTE'
+
 /* below are just for references
 export const ADD_CONTACT 	= 'ADD_CONTACT';
 export const DELETE_CONTACT = 'DELETE_CONTACT';

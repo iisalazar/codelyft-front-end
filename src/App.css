@@ -77,6 +77,7 @@ a {
 }
 
 .card {
+  
   padding: 1rem;
   border: #ccc 1px dotted;
   margin: 0.7rem 0;
@@ -265,6 +266,17 @@ button {
   grid-gap: 2rem;
 }
 
+.grid-6-3 {
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  grid-gap: 2rem;
+}
+
+.no-gap {
+  grid-gap: 0;
+}
+
+
 .btn {
   display: inline-block;
   background: var(--light-color);
@@ -277,6 +289,8 @@ button {
   transition: opacity 0.2s ease-in;
   outline: none;
 }
+
+
 
 .btn-link {
   background: none;
@@ -381,8 +395,86 @@ button {
   border: #ccc solid 1px;
 }
 
+/* inverted buttons */
+.btn-primary-inverted,
+.bg-primary-inverted,
+.badge-primary-inverted,
+.alert-primary-inverted {
+  border: 2px solid var(--primary-color);
+  background: #fff;
+  color: var(--primary-color);
+}
+
+.btn-secondary-inverted,
+.bg-secondary-inverted,
+.badge-secondary-inverted,
+.alert-secondary-inverted {
+
+  border: 2px solid var(--secondary-color);
+  background: #fff;
+  color: var(--secondary-color);
+}
+
+
+
+.btn-dark-inverted,
+.bg-dark-inverted,
+.badge-dark-inverted,
+.alert-dark-inverted {
+  border: 2px solid var(--dark-color);
+  background: #fff;
+  color: var(--dark-color);
+}
+
+
+
+.btn-danger-inverted,
+.bg-danger-inverted,
+.badge-danger-inverted,
+.alert-danger-inverted {
+  border: 2px solid var(--danger-color);
+  background: #fff;
+  color: var(--danger-color);
+}
+
+.btn-success-inverted,
+.bg-success-inverted,
+.badge-success-inverted,
+.alert-success-inverted {
+  border: 2px solid var(--success-color);
+  background: #fff;
+  color: var(--success-color);
+}
+
+.btn-primary-inverted:hover {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.btn-secondary-inverted:hover{
+  background: var(--secondary-color);
+  color: #fff;
+}
+
+.btn-dark-inverted:hover{
+  background: var(--dark-color);
+  color: #fff;
+}
+
+.btn-danger-inverted:hover{
+  background: var(--danger-color);
+  color: #fff;
+}
+
+.btn-success-inverted:hover{
+  background: var(--success-color);
+  color: #fff;
+}
+
+
 .btn:hover {
-  opacity: 0.8;
+  opacity: 1;
+  transition: 0.3s;
 }
 
 .bg-light,
@@ -404,13 +496,17 @@ button {
 } 
 
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .grid-2,
   .grid-3,
-  .grid-4 {
+  .grid-4,
+  .grid-6-3 {
     grid-template-columns: 1fr;
   }
-    /* Navbar */
+  .hide-sm {
+    display: none;
+  }
+  /* Navbar */
   .navbar {
     display: block;
     text-align: center;

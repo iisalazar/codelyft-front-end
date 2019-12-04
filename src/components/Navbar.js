@@ -18,7 +18,11 @@ const Navbar = () => {
 	}
 	const authLinks = (
 		<Fragment>
-			<li>Hello { user && user.username }</li>
+			<li>
+				<Link to='/profile'>
+					Hello, { user && user.username }
+				</Link>
+			</li>
 			<li>
 				<a onClick= { onLogout } href="#!">
 					{/* 
@@ -43,7 +47,9 @@ const Navbar = () => {
 	return(
 		<div className="navbar bg-primary">
 			<h1>
-				Codelyft
+				<Link to='/'>
+					Codelyft
+				</Link>
 			</h1>
 			<ul>
 				{

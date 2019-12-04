@@ -2,11 +2,13 @@ import React from "react";
 
 
 
-export default ({ username, profile}) => {
+export default ({ username, profile, style }) => {
 	const cardStyle={
 		display: 'grid',
-		gridTemplateColumns: '1fr 9fr',
+		gridTemplateColumns: '1fr 8fr',
 		alignItems:'center',
+		width: '200px',
+		border: '0'
 	}
 	return(
 		<div className="card" style={cardStyle}>

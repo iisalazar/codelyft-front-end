@@ -3,6 +3,8 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 import Profile from "./pages/Profile";
+import Feed from "./pages/Feed";
+
 import Register from "./components/forms/Register";
 import Login from "./components/forms/Login";
 import Alerts from "./components/Alerts";
@@ -13,6 +15,8 @@ import AlertState from "./context/alert/AlertState";
 import SnippetState from "./context/snippet/SnippetState";
 import AuthState from "./context/auth/AuthState";
 import ModalState from "./context/modal/ModalState";
+import FeedState from "./context/feed/FeedState";
+
 
 import setAuthToken from "./utils/setAuthToken";
 
@@ -38,22 +42,25 @@ const App = () => {
       <SnippetState>
         <AlertState>
           <ModalState>
-            <Router>
-              <SnippetModal />
-              <ModalForm />
-              <Fragment>
-                <Navbar />
-                <div className="container">
-                  <Alerts />
-                  <Switch>
-                    <PrivateRoute path="/" exact component={ Profile } />
-                    <Route path="/register" exact component = { Register } />
-                    <Route path="/login" exact component = { Login } />
-                  </Switch>
-                  <Widget />
-                </div>
-              </Fragment>
-            </Router>
+            <FeedState>
+              <Router>
+                <SnippetModal />
+                <ModalForm />
+                <Fragment>
+                  <Navbar />
+                  <div className="container">
+                    <Alerts />
+                    <Switch>
+                      <PrivateRoute path="/profile" exact component={ Profile } />
+                      <PrivateRoute path="/" exact component={ Feed } />
+                      <Route path="/register" exact component = { Register } />
+                      <Route path="/login" exact component = { Login } />
+                    </Switch>
+                    <Widget />
+                  </div>
+                </Fragment>
+              </Router>
+            </FeedState>
           </ModalState>
         </AlertState>
       </SnippetState>

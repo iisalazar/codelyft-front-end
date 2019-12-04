@@ -7,7 +7,10 @@ import {
 	// SNIPPET_ERROR,
 	CLEAR_SNIPPETS,
 	CLEAR_CREATED,
-	CLEAR_DELETED
+	CLEAR_DELETED,
+	GET_FEED,
+	UPVOTE,
+	DOWNVOTE
 } from "../types";
 
 export default (state, action) => {
@@ -55,6 +58,70 @@ export default (state, action) => {
 			return {
 				...state,
 				current: null
+			}
+		case GET_FEED:
+			return {
+				...state,
+				feed: action.payload,
+				loading: false
+			}
+		case UPVOTE:
+			const { id, user } = action.payload;
+			const feed = state.feed.map( entry => {
+				if(entry.id === id){
+					let nandon = false;
+					entry.upVoters.map( voter => {
+						if(voter.id === user.id){
+							nandon=true
+						}
+						return voter
+					})
+					if(nandon){
+						const a = entry.upVoters.indexOf(user);
+						entry.upVoters.splice(a, 1);
+						entry.upVotes -= 1
+						entry.totalVotes -= 1
+					}else {
+						entry.upVoters.push(user);
+						entry.upVotes += 1
+						entry.totalVotes += 1
+					}
+					
+				}
+				return entry
+			})
+			return {
+				...state,
+				feed
+			}
+		case DOWNVOTE:
+			const { ID, USER } = action.payload;
+			const FEED = state.feed.map( entry => {
+				if(entry.id === ID){
+					let nandon = false;
+					entry.downVoters.map( voter => {
+						if(voter.id === USER.id){
+							nandon=true
+						}
+						return voter
+					})
+					if(nandon){
+						const a = entry.downVoters.indexOf(USER);
+						entry.downVoters.splice(a, 1);
+						entry.downVotes += 1
+						entry.totalVotes += 1
+					}else {
+						entry.downVoters.push(USER);
+						entry.downVotes -= 1
+						entry.totalVotes -= 1
+					}
+					
+				}
+				return entry
+			})
+			return {
+				...state,
+				feed : FEED
 			}
 		default:
 			return state

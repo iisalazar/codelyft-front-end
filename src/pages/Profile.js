@@ -10,16 +10,16 @@ const Profile = () => {
 	const snippetContext = useContext(SnippetContext);
 
 	const { loadUser } = authContext;
-	const { getSnippets } = snippetContext;
+	const { getMySnippets } = snippetContext;
 	useEffect( () => {
 		loadUser();
-		getSnippets();
+		getMySnippets();
 		//eslint-disable-next-line
 	}, []);
 
 	return (
 		<div className="text-center">
-			{ !authContext.loading ? <ProfileCard className="margin-y-3-auto"/> : <Spinner /> }
+			{ !authContext.loading ? <ProfileCard className="margin-y-3-auto" /> : <Spinner /> }
 			<h1>Snippets</h1>
 			{ !snippetContext.loading ? <Snippets /> : <Spinner /> }
 		</div>
