@@ -76,7 +76,7 @@ const SnippetState = props => {
 	const setCurrent = async id => {
 		try {
 			let res = await axios.get(`/api/snippets/${id}`);
-			const res2 = await axios.get(`/api/users/${res.data.user}/`);
+			const res2 = await axios.get(`/api/users/${res.data.user.id}/`);
 			res.data = { ...res.data, user: {
 				username: res2.data.username,
 				id: res2.data.id,

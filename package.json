@@ -73,5 +73,5 @@
   },
   "main": "public/electron.js",
   "homepage": "./",
-  "proxy": "http://localhost:8000"
+  "proxy": "http://codelift-backend.herokuapp.com"
 }
